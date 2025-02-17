@@ -6,12 +6,15 @@ import uuid
 import json
 
 app = Flask(__name__)
-CORS(app)
+CORS(app)  # Enable CORS for cross-origin requests
 
-openai.api_key = ""
+# Initialize OpenAI API key
+openai.api_key = ""  # Replace with your actual key
 
 # In-memory session storage (use a database in production)
 sessions = {}
+
+# Helper functions (same as original but modified for file handling)
 
 
 def extract_text_from_pdf(file_stream):
