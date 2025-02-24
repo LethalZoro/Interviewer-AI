@@ -1,7 +1,10 @@
-import os
-from flask import Flask
+from flask import Flask, request, jsonify
 from flask_cors import CORS
+import fitz
 import openai
+import uuid
+import json
+import os
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 
