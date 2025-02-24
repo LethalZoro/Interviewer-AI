@@ -1,16 +1,16 @@
-from flask import Flask, request, jsonify
+import os
+from flask import Flask
 from flask_cors import CORS
-import fitz
 import openai
-import uuid
-import json
-
-# MongoDB Imports and Connection
-from pymongo.mongo_client import MongoClient
+from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 
-# MongoDB Atlas connection URI – replace <db_password> with your password
-uri = "mongodb+srv://mmustafa:password@cluster0-contact-summar.pzsvy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0-Contact-Summary"
+# Load environment variables
+MONGO_PASSWORD = os.getenv("MONGO_PASSWORD")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+# MongoDB connection URI
+uri = f"mongodb+srv://mmustafa:{MONGO_PASSWORD}@cluster0-contact-summar.pzsvy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0-Contact-Summary"
 client = MongoClient(uri, server_api=ServerApi('1'))
 
 try:
@@ -27,7 +27,7 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS for cross-origin requests
 
 # Initialize OpenAI API key
-openai.api_key = "API KEY"
+openai.api_key = OPENAI_API_KEY
 
 # Helper functions
 
