@@ -384,7 +384,7 @@ openai.api_key = OPENAI_API_KEY
 
 def get_sessions_collection():
     if 'mongo_client' not in g:
-        g.mongo_client = MongoClient(uri, server_api=ServerApi('1'))
+        g.mongo_client = MongoClient(uri, tls=True, server_api=ServerApi('1'))
         g.db = g.mongo_client['AI_Interviewer_db']
     return g.db['sessions']
 
